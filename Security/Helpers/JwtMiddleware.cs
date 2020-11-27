@@ -25,9 +25,12 @@ namespace Security.Helpers
         {
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
-            if (token == null) await _next(context);
+            if (token != null)
+                attachUserToContext(context, userService, token);
 
-            attachUserToContext(context, userService, token);
+            await _next(context);
+
+            
         }
 
         private void attachUserToContext(HttpContext context, IUserService userService, string token)
