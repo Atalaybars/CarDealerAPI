@@ -29,8 +29,7 @@ namespace CarDealer.API.Controllers
             return Ok(cars);
         }
 
-        [HttpGet]
-        [Route("[action]/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetCarById(int id)
         {
             var car = await _carManager.GetCarById(id);
@@ -42,7 +41,6 @@ namespace CarDealer.API.Controllers
 
         [Authorize]
         [HttpPost]
-        [Route("[action]")]
         public async Task<IActionResult> CreateCar([FromBody]Car car)
         {
             var newCar = await _carManager.CreateCar(car);
@@ -51,7 +49,6 @@ namespace CarDealer.API.Controllers
 
         [Authorize]
         [HttpPut]
-        [Route("[action]")]
         public async Task<IActionResult> UpdateCar([FromBody]Car car)
         {
             if (await _carManager.GetCarById(car.Id) == null)
@@ -61,8 +58,7 @@ namespace CarDealer.API.Controllers
         }
 
         [Authorize]
-        [HttpDelete]
-        [Route("[action]/{id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCar(int id)
         {
             if (await _carManager.GetCarById(id) == null)
