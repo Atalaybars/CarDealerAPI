@@ -17,6 +17,7 @@
     </PackageReference>
     <PackageReference Include="Dapper" Version="2.0.78" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CarDealer\CarDealer.Entities.csproj" />
@@ -24,5 +25,7 @@
   <ItemGroup>
     <Folder Include="Abstract\" />
     <Folder Include="Concrete\" />
+    <Folder Include="DataTransferObjects\" />
+    <Folder Include="CarProfiles\" />
   </ItemGroup>
 </Project>

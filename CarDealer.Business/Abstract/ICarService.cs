@@ -15,6 +15,6 @@ namespace CarDealer.Business.Abstract
 
         Task<Car> UpdateCar(Car car);
 
-        Task DeleteCar(int id);
+        Task<Car> DeleteCar(int id);
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using CarDealer.Business.Abstract;
 using CarDealer.Business.Concrete;
 using CarDealer.DataAccess.Abstract;
@@ -40,6 +41,8 @@ namespace CarDealer.API
             services.AddScoped<IUserService, UserService>();
 
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
         }
 

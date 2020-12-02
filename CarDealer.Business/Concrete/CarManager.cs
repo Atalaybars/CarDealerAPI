@@ -21,9 +21,9 @@ namespace CarDealer.Business.Concrete
             return await _carRepository.CreateCar(car);
         }
 
-        public async Task DeleteCar(int id)
+        public async Task<Car> DeleteCar(int id)
         {
-            await _carRepository.DeleteCar(id);
+            return await _carRepository.DeleteCar(id);
         }
 
         public async Task<List<Car>> GetAllCars()

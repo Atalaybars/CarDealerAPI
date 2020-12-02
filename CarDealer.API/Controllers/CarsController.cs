@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using CarDealer.Business.Abstract;
+using CarDealer.DTO.DataTransferObjects;
 using CarDealer.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Security.Helpers;
@@ -13,18 +15,20 @@ namespace CarDealer.API.Controllers
     [Route("api/[controller]")]
     public class CarsController : Controller
     {
-        private ICarService _carManager;
+        private readonly ICarService _carManager;
+        private readonly IMapper _mapper;
 
-        public CarsController(ICarService carManager)
+        public CarsController(ICarService carManager, IMapper mapper)
         {
             _carManager = carManager;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllCars()
         {
             var cars = await _carManager.GetAllCars();
-            return Ok(cars);
+            return Ok(_mapper.Map<List<ReadDto>>(cars));
         }
 
         [HttpGet("{id}")]
@@ -34,25 +38,30 @@ namespace CarDealer.API.Controllers
 
             if (car == null) return NotFound();
 
-            return Ok(car);
+            return Ok(_mapper.Map<ReadDto>(car));
         }
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> CreateCar([FromBody]Car car)
+        public async Task<IActionResult> CreateCar([FromBody]Car createDto)
         {
+            var car = _mapper.Map<Car>(createDto);
             var newCar = await _carManager.CreateCar(car);
-            return CreatedAtAction("GetCarById", new { id = newCar.Id }, newCar);
+            var mappedCar = _mapper.Map<ReadDto>(newCar);
+            return CreatedAtAction("GetCarById", new { id = mappedCar.Id }, mappedCar);
         }
 
         [Authorize]
         [HttpPut]
-        public async Task<IActionResult> UpdateCar([FromBody]Car car)
+        public async Task<IActionResult> UpdateCar([FromBody]Car UpdateDto)
         {
-            if (await _carManager.GetCarById(car.Id) == null)
+            if (await _carManager.GetCarById(UpdateDto.Id) == null)
                 return NotFound();
-            
-            return Ok(await _carManager.UpdateCar(car));
+
+            var car = _mapper.Map<Car>(UpdateDto);
+            car = await _carManager.UpdateCar(car);
+
+            return Ok(_mapper.Map<ReadDto>(car));
         }
 
         [Authorize]
@@ -62,8 +71,7 @@ namespace CarDealer.API.Controllers
             if (await _carManager.GetCarById(id) == null)
                 return NotFound();
 
-            await _carManager.DeleteCar(id);
-            return Ok();
+            return Ok(await _carManager.DeleteCar(id));
         }
     }
 }

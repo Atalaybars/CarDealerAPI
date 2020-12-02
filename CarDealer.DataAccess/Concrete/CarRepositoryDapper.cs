@@ -21,9 +21,7 @@ namespace CarDealer.DataAccess.Concrete
             {
                 return await connection.QueryFirstAsync<Car>
 
-                    (sql, new { Brand = car.Brand, Model = car.Model },
-
-                    commandType: CommandType.StoredProcedure);
+                    (sql, new { Brand = car.Brand, Model = car.Model }, commandType: CommandType.StoredProcedure);
             }
         }
 
@@ -33,9 +31,7 @@ namespace CarDealer.DataAccess.Concrete
 
             using (var connection = new SqlConnection(CONNECTIN_STRING))
             {
-                return await connection.QueryFirstAsync<Car>
-
-                    (sql, new { Id = id }, commandType: CommandType.StoredProcedure);
+                return await connection.QueryFirstAsync<Car>(sql, new { Id = id }, commandType: CommandType.StoredProcedure);
             }
         }
 
@@ -45,9 +41,7 @@ namespace CarDealer.DataAccess.Concrete
 
             using (var connection = new SqlConnection(CONNECTIN_STRING))
             {
-                return (List<Car>)await connection.QueryAsync<Car>
-
-                    (sql, commandType: CommandType.StoredProcedure);
+                return (List<Car>)await connection.QueryAsync<Car>(sql, commandType: CommandType.StoredProcedure);
             }
         }
 
@@ -57,9 +51,7 @@ namespace CarDealer.DataAccess.Concrete
 
             using (var connection = new SqlConnection(CONNECTIN_STRING))
             {
-                return await connection.QueryFirstAsync<Car>
-
-                    (sql, new { Id = id }, commandType: CommandType.StoredProcedure);
+                return await connection.QueryFirstOrDefaultAsync<Car>(sql, new { Id = id }, commandType: CommandType.StoredProcedure);
             }
         }
 
@@ -69,13 +61,8 @@ namespace CarDealer.DataAccess.Concrete
 
             using (var connection = new SqlConnection(CONNECTIN_STRING))
             {
-                return await connection.QueryFirstAsync<Car>
-
-                    (sql, new { Model = car.Model, Brand = car.Brand, Id = car.Id },
-
-                    commandType: CommandType.StoredProcedure);
+                return await connection.QueryFirstAsync<Car>(sql, new { Model = car.Model, Brand = car.Brand, Id = car.Id }, commandType: CommandType.StoredProcedure);
             }
-
 
         }
     }
