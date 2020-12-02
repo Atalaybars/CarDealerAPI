@@ -33,7 +33,7 @@ namespace CarDealer.API
         {
             services.AddControllers();
 
-            services.AddScoped<ICarRepository, CarRepository>();
+            services.AddScoped<ICarRepository, CarRepositoryDapper>();
 
             services.AddScoped<ICarService, CarManager>();
 

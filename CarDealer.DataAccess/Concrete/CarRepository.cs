@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CarDealer.DataAccess.Concrete
 {
-    public class CarRepository : ICarRepository
+    public class CarRepository // dapper için burayı comment ediyorum (: ICarRepository
     {
         public async Task<Car> CreateCar(Car car)
         {

@@ -15,6 +15,7 @@ namespace CarDealer.DataAccess.Abstract
 
         Task<Car> UpdateCar(Car car);
 
-        Task DeleteCar(int id);
+        // Dapper ile silinenleri çeviriyorum
+        Task<Car> DeleteCar(int id);
     }
 }
