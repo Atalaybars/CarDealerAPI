@@ -19,9 +19,7 @@ namespace CarDealer.DataAccess.Concrete
 
             using (var connection = new SqlConnection(CONNECTIN_STRING))
             {
-                return await connection.QueryFirstAsync<Car>
-
-                    (sql, new { Brand = car.Brand, Model = car.Model }, commandType: CommandType.StoredProcedure);
+                return await connection.QueryFirstAsync<Car>(sql, new { Brand = car.Brand, Model = car.Model }, commandType: CommandType.StoredProcedure);
             }
         }
 
