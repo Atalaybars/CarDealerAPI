@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace CarDealer.DataAccess.DataTransferObjects
+namespace CarDealer.DataAccess.MapperConfigs.DataTransferObjects
 {
     public class CreateDto
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CarDealer.DataAccess.DataTransferObjects
+namespace CarDealer.DataAccess.MapperConfigs.DataTransferObjects
 {
     public class ReadDto
     {

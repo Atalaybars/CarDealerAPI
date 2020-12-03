@@ -25,7 +25,8 @@
   <ItemGroup>
     <Folder Include="Abstract\" />
     <Folder Include="Concrete\" />
-    <Folder Include="DataTransferObjects\" />
-    <Folder Include="MapperProfiles\" />
+    <Folder Include="MapperConfigs\" />
+    <Folder Include="MapperConfigs\DataTransferObjects\" />
+    <Folder Include="MapperConfigs\Profiles\" />
   </ItemGroup>
 </Project>
