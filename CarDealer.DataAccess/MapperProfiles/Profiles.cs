@@ -1,10 +1,9 @@
 ﻿using System;
 using AutoMapper;
 using CarDealer.DataAccess.DataTransferObjects;
-using CarDealer.DTO.DataTransferObjects;
 using CarDealer.Entities;
 
-namespace CarDealer.DTO.CarProfiles
+namespace CarDealer.DataAccess.MapperProfiles
 {
     public class Profiles : Profile
     {

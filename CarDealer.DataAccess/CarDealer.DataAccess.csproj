@@ -26,6 +26,6 @@
     <Folder Include="Abstract\" />
     <Folder Include="Concrete\" />
     <Folder Include="DataTransferObjects\" />
-    <Folder Include="CarProfiles\" />
+    <Folder Include="MapperProfiles\" />
   </ItemGroup>
 </Project>
