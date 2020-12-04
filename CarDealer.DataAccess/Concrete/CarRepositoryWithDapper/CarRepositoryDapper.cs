@@ -7,30 +7,31 @@ using CarDealer.DataAccess.Abstract;
 using CarDealer.Entities;
 using Dapper;
 
-namespace CarDealer.DataAccess.Concrete
+namespace CarDealer.DataAccess.Concrete.CarRepositoryWithDapper
 {
     public class CarRepositoryDapper : ICarRepository
     {
+
         const string CONNECTIN_STRING = "Server=localhost,1433\\Catalog=CardDB;Database=CarDB;User=sa;Password=reallyStrongPwd#123";
+
 
         public async Task<Car> CreateCar(Car car)
         {
-            var sql = "CreateCar";
+            var dictionary = new Dictionary<string, object>();
 
-            using (var connection = new SqlConnection(CONNECTIN_STRING))
-            {
-                return await connection.QueryFirstAsync<Car>(sql, new { Brand = car.Brand, Model = car.Model }, commandType: CommandType.StoredProcedure);
-            }
+            dictionary.Add("@Brand", car.Brand);
+            dictionary.Add("@Model", car.Model);
+
+            return await DapperHelperMethods.QueryFirstAsync("CreateCar", dictionary);
         }
 
         public async Task<Car> DeleteCar(int id)
         {
-            var sql = "DeleteCar";
+            var dictionary = new Dictionary<string, object>();
 
-            using (var connection = new SqlConnection(CONNECTIN_STRING))
-            {
-                return await connection.QueryFirstAsync<Car>(sql, new { Id = id }, commandType: CommandType.StoredProcedure);
-            }
+            dictionary.Add("@Id", id);
+
+            return await DapperHelperMethods.QueryFirstAsync("DeleteCar", dictionary);
         }
 
         public async Task<List<Car>> GetAllCars()
@@ -55,12 +56,13 @@ namespace CarDealer.DataAccess.Concrete
 
         public async Task<Car> UpdateCar(Car car)
         {
-            var sql = "UpdateCar";
+            var dictionary = new Dictionary<string, object>();
 
-            using (var connection = new SqlConnection(CONNECTIN_STRING))
-            {
-                return await connection.QueryFirstAsync<Car>(sql, new { Model = car.Model, Brand = car.Brand, Id = car.Id }, commandType: CommandType.StoredProcedure);
-            }
+            dictionary.Add("@Id", car.Id);
+            dictionary.Add("@Brand", car.Brand);
+            dictionary.Add("@Model", car.Model);
+
+            return await DapperHelperMethods.QueryFirstAsync("UpdateCar", dictionary);
 
         }
     }

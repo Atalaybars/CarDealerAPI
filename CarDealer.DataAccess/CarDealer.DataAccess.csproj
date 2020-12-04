@@ -28,5 +28,6 @@
     <Folder Include="MapperConfigs\" />
     <Folder Include="MapperConfigs\DataTransferObjects\" />
     <Folder Include="MapperConfigs\Profiles\" />
+    <Folder Include="Concrete\CarRepositoryWithDapper\" />
   </ItemGroup>
 </Project>

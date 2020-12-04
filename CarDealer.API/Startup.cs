@@ -6,7 +6,7 @@ using AutoMapper;
 using CarDealer.Business.Abstract;
 using CarDealer.Business.Concrete;
 using CarDealer.DataAccess.Abstract;
-using CarDealer.DataAccess.Concrete;
+using CarDealer.DataAccess.Concrete.CarRepositoryWithDapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
