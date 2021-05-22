@@ -18,8 +18,6 @@ namespace CarDealer.DataAccess.Concrete.CarRepositoryWithDapper
         {
             _connString = config.GetConnectionString("SqlConnection");
         }
-        // const string CONNECTIN_STRING = "Server=localhost,1433\\Catalog=CardDB;Database=CarDB;User=sa;Password=reallyStrongPwd#123";
-
 
         public async Task<Car> CreateCar(Car car)
         {
@@ -69,7 +67,6 @@ namespace CarDealer.DataAccess.Concrete.CarRepositoryWithDapper
             dictionary.Add("@Model", car.Model);
 
             return await DapperHelperMethods.QueryFirstAsync("UpdateCar", dictionary);
-
         }
     }
 }
