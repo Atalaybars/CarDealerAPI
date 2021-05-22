@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using CarDealer.DataAccess.Abstract;
 using CarDealer.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarDealer.DataAccess.Concrete
 {
-    public class CarRepository // dapper için burayı comment ediyorum (: ICarRepository
+    // commented this out to use dapper instead of Entity Framework
+    public class CarRepository // : ICarRepository
     {
         public async Task<Car> CreateCar(Car car)
         {
