@@ -6,13 +6,19 @@ using System.Threading.Tasks;
 using CarDealer.DataAccess.Abstract;
 using CarDealer.Entities;
 using Dapper;
+using Microsoft.Extensions.Configuration;
 
 namespace CarDealer.DataAccess.Concrete.CarRepositoryWithDapper
 {
     public class CarRepositoryDapper : ICarRepository
     {
+        private readonly string _connString;
 
-        const string CONNECTIN_STRING = "Server=localhost,1433\\Catalog=CardDB;Database=CarDB;User=sa;Password=reallyStrongPwd#123";
+        public CarRepositoryDapper(IConfiguration config)
+        {
+            _connString = config.GetConnectionString("SqlConnection");
+        }
+        // const string CONNECTIN_STRING = "Server=localhost,1433\\Catalog=CardDB;Database=CarDB;User=sa;Password=reallyStrongPwd#123";
 
 
         public async Task<Car> CreateCar(Car car)
@@ -38,7 +44,7 @@ namespace CarDealer.DataAccess.Concrete.CarRepositoryWithDapper
         {
             var sql = "GetAllCars";
 
-            using (var connection = new SqlConnection(CONNECTIN_STRING))
+            using (var connection = new SqlConnection(_connString))
             {
                 return (List<Car>)await connection.QueryAsync<Car>(sql, commandType: CommandType.StoredProcedure);
             }
@@ -48,7 +54,7 @@ namespace CarDealer.DataAccess.Concrete.CarRepositoryWithDapper
         {
             var sql = "GetById";
 
-            using (var connection = new SqlConnection(CONNECTIN_STRING))
+            using (var connection = new SqlConnection(_connString))
             {
                 return await connection.QueryFirstOrDefaultAsync<Car>(sql, new { Id = id }, commandType: CommandType.StoredProcedure);
             }
